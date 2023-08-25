@@ -5,7 +5,7 @@ import GameCardLoading from "./GameCardLoading";
 import GameCardContainer from "./GameCardContainer";
 
 const GamesGrid = () => {
-  const { error, games, isLoading } = useGames();
+  const { error, data, isLoading } = useGames();
   const loadingCards = ["a", "b", "c", "d", "e", "f", "g"];
   return (
     <>
@@ -21,7 +21,7 @@ const GamesGrid = () => {
               <GameCardLoading key={l} />
             </GameCardContainer>
           ))}
-        {games.map((g) => (
+        {data.map((g) => (
           <GameCardContainer>
             <GameCard key={g.id} game={g}></GameCard>
           </GameCardContainer>
