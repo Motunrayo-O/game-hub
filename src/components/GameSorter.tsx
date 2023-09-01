@@ -10,22 +10,38 @@ import { BsChevronDown } from "react-icons/bs";
 import { GameQuery } from "../App";
 
 interface Props {
-  selectedQuery: GameQuery;
+  selectedSortOrder: string;
+  onSortOrderSelected: (sortOrder: string) => void;
 }
 
-const GameSorter = ({ selectedQuery }: Props) => {
+const GameSorter = ({ selectedSortOrder, onSortOrderSelected }: Props) => {
+  const defaultSortOrder = { value: "", displayName: "Relevance" };
+  const sortOrders = [
+    defaultSortOrder,
+    { value: "-added", displayName: "Date Added" },
+    { value: "name", displayName: "Name" },
+    { value: "-released", displayName: "Release Date" },
+    { value: "-metacritic", displayName: "Popularity" },
+    { value: "-rating", displayName: "Average Rating" },
+  ];
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by: {selectedQuery.sortOrder}
+        Order by:{" "}
+        {sortOrders.find((s) => s.value == selectedSortOrder)?.displayName ||
+          defaultSortOrder.displayName}
       </MenuButton>
       <MenuList>
-        <MenuItem>Relevance</MenuItem>
-        <MenuItem>Date Added</MenuItem>
-        <MenuItem>Name</MenuItem>
-        <MenuItem>Release Date</MenuItem>
-        <MenuItem>Popularity</MenuItem>
-        <MenuItem>Average Rating</MenuItem>
+        {sortOrders.map((s) => (
+          <MenuItem
+            key={s.value}
+            value={s.value}
+            onClick={() => onSortOrderSelected(s.value)}
+          >
+            {s.displayName}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

@@ -11,7 +11,7 @@ import GameSorter from "./components/GameSorter";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
-  sortOrder: string | null;
+  sortOrder: string;
 }
 
 function App() {
@@ -20,13 +20,15 @@ function App() {
   );
 
   const handleGenreSelect = (genre: Genre) => {
-    console.log(genre);
     setSelectedQuery({ ...selectedQuery, genre });
   };
 
   const handlePlatformSelected = (platform: Platform) => {
-    console.log(platform);
     setSelectedQuery({ ...selectedQuery, platform });
+  };
+
+  const handleSortOrderSelected = (sortOrder: string) => {
+    setSelectedQuery({ ...selectedQuery, sortOrder });
   };
 
   return (
@@ -57,7 +59,10 @@ function App() {
             selectedPlatform={selectedQuery.platform}
             onPlatformSelected={handlePlatformSelected}
           ></PlatformSelector>
-          <GameSorter selectedQuery={selectedQuery}></GameSorter>
+          <GameSorter
+            selectedSortOrder={selectedQuery.sortOrder}
+            onSortOrderSelected={handleSortOrderSelected}
+          ></GameSorter>
         </HStack>
 
         <GamesGrid selectedQuery={selectedQuery}></GamesGrid>
