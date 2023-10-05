@@ -1,4 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import genres from "../data/genres";
+import axios from "axios";
+import apiClient from "../services/api-client";
+import { DataResponse } from "./useData";
 
 export interface Genre {
   id: number;
@@ -7,9 +11,16 @@ export interface Genre {
 }
 
 const useGenres = () => {
-  // const { data, isLoading, error } = useData<Genre>("/genres");
 
-  return { data: genres, isLoading: false, error: null };
+  const fetchQueries = () =>
+    apiClient.get<DataResponse<Genre>>("/genres").then((res) => res.data);
+
+  return useQuery<DataResponse<Genre>>({
+    queryKey: ["genres"],
+    queryFn: fetchQueries,
+    staleTime: 24 * 60 * 60 * 1000, // 24h
+    initialData: { count: genres.length, results: genres },
+  });
 };
 
 export default useGenres;
