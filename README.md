@@ -13,7 +13,7 @@ Welcome to the Game Hub project! This is a portfolio project that showcases my s
 
 ## Technologies Used
 
-- **React.js:** The project is built using the React JavaScript library.
+- **React.js and TypeScript:** The project is built using the React JavaScript library and Typescript.
 - **RAWG API:** Game data is fetched from the RAWG Video Games Database API.
 - **Vercel:** The project is deployed on Vercel's hosting platform.
 - **React Router:** Used for client-side routing.
