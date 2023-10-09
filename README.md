@@ -6,9 +6,9 @@ Welcome to the Game Hub project! This is a portfolio project that showcases my s
 
 ## Features
 
+- Modern, Dynamic UI including Light/Dark Mode, Infinite Scroll.
 - Browse a collection of video games from the RAWG API.
-- Search for specific games by title.
-- Modern, Dynamic UI including Light/Dark Mode.
+- Search for specific games by title or filter by platform/genre.
 - Responsive design for mobile and desktop.
 
 ## Technologies Used
@@ -28,3 +28,4 @@ Welcome to the Game Hub project! This is a portfolio project that showcases my s
    ```bash
    git clone [https://github.com/your-username/game-hub.git](https://github.com/Motunrayo-O/game-hub.git)https://github.com/Motunrayo-O/game-hub.git
    cd game-hub
+   ```
