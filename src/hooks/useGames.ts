@@ -27,11 +27,11 @@ const useGames = (selectedQuery: GameQuery) => {
     queryFn: ({ pageParam = 1 }) =>
       apiClientInstance.fetchData({
         params: {
-          genres: selectedQuery.genre?.id,
-          parent_platforms: selectedQuery.platform?.id,
+          genres: selectedQuery.genreId,
+          parent_platforms: selectedQuery.platformId,
           ordering: selectedQuery.sortOrder,
           search: selectedQuery.searchTerm,
-          page: pageParam
+          page: pageParam,
         },
       }),
     staleTime: 2 * 60 * 1000, // 2min
