@@ -2,6 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import APIClient, { DataResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
+import ms from "ms";
 
 const DEFAULT_PAGE_SIZE = 20;
 
@@ -34,7 +35,7 @@ const useGames = (selectedQuery: GameQuery) => {
           page: pageParam,
         },
       }),
-    staleTime: 2 * 60 * 1000, // 2min
+    staleTime: ms("2 min"),
     keepPreviousData: true,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
