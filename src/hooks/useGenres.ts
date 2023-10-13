@@ -15,7 +15,7 @@ const useGenres = () => {
   return useQuery<DataResponse<Genre>>({
     queryKey: ["genres"],
     queryFn: apiClientInstance.fetchData,
-    staleTime: ms("24 hours"), // 24h
+    staleTime: ms("24h"), 
     initialData: genres,
   });
 };

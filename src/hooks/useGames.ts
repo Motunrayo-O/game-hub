@@ -35,7 +35,7 @@ const useGames = (selectedQuery: GameQuery) => {
           page: pageParam,
         },
       }),
-    staleTime: ms("2 min"),
+    staleTime: ms("1m"),
     keepPreviousData: true,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;

@@ -16,7 +16,7 @@ const usePlatforms = () => {
     queryKey: ["platforms"],
     queryFn: apiClientInstance.fetchData,
     initialData: platforms,
-    staleTime: ms("24 hours"), // 24h
+    staleTime: ms("24h"),
   });
 };
 
