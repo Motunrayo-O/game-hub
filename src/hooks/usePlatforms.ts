@@ -11,11 +11,6 @@ export interface Platform {
 
 const apiClientInstance = new APIClient<Platform>("/platforms/lists/parents");
 
-
-
-
-
-// test vercel build issue
 const usePlatforms = () => {
   return useQuery({
     queryKey: ["platforms"],
