@@ -7,18 +7,10 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useGameQueryStore from "../store";
 
-
-
 const GamesGrid = () => {
-  const { gameQuery } =
-    useGameQueryStore();
-  const {
-    error,
-    data,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-  } = useGames(gameQuery);
+  const { gameQuery } = useGameQueryStore();
+  const { error, data, isLoading, fetchNextPage, hasNextPage } =
+    useGames();
   const loadingCards = ["a", "b", "c", "d", "e", "f", "g"];
 
   const totalNumGamesFetched =

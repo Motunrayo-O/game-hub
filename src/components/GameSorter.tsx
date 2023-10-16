@@ -11,7 +11,8 @@ import useGameQueryStore from "../store";
 
 const GameSorter = () => {
   const defaultSortOrder = { value: "", displayName: "Relevance" };
-  const { gameQuery, setSort } = useGameQueryStore();
+  const selectedSort = useGameQueryStore((s) => s.gameQuery.sortOrder);
+  const setSort = useGameQueryStore((s) => s.setSort);
   const sortOrders = [
     defaultSortOrder,
     { value: "-added", displayName: "Date Added" },
@@ -25,7 +26,7 @@ const GameSorter = () => {
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         Order by:{" "}
-        {sortOrders.find((s) => s.value == gameQuery.sortOrder)?.displayName ||
+        {sortOrders.find((s) => s.value == selectedSort)?.displayName ||
           defaultSortOrder.displayName}
       </MenuButton>
       <MenuList>

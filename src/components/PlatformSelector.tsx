@@ -19,10 +19,10 @@ interface Props {
 
 const PlatformSelector = () => {
   const { data, error } = usePlatforms();
-  const { gameQuery, setPlatform, setGenre, setSearch, setSort } =
-    useGameQueryStore();
-
-  const selectedPlatform = useFindPlatformById(gameQuery.platformId);
+  const setPlatform = useGameQueryStore((s) => s.setPlatform);
+  const selectedPlatformId = useGameQueryStore((s) => s.gameQuery.platformId);
+  
+  const selectedPlatform = useFindPlatformById(selectedPlatformId);
 
   if (error) return null;
 

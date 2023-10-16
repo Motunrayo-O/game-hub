@@ -1,4 +1,4 @@
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 import {
   Button,
   HStack,
@@ -13,7 +13,8 @@ import useGameQueryStore from "../store";
 
 const GenreList = () => {
   const { data, isLoading, error } = useGenres();
-  const { gameQuery, setGenre } = useGameQueryStore();
+  const selectedGenreId = useGameQueryStore(s => s.gameQuery.genreId);
+  const setGenre = useGameQueryStore(s => s.setGenre);
 
   if (error) return null;
 
@@ -40,7 +41,7 @@ const GenreList = () => {
                 variant="link"
                 fontSize={"lg"}
                 onClick={() => setGenre(g.id)}
-                fontWeight={g.id == gameQuery.genreId ? "bold" : "normal"}
+                fontWeight={g.id == selectedGenreId ? "bold" : "normal"}
               >
                 {g.name}
               </Button>

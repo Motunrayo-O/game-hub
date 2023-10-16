@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import APIClient, { DataResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
 import ms from "ms";
-import { GameQuery } from "../store";
+import useGameQueryStore from "../store";
 
 const DEFAULT_PAGE_SIZE = 20;
 
@@ -22,7 +22,9 @@ interface GamesResponse {
 
 const apiClientInstance = new APIClient<Game>("/games");
 
-const useGames = (selectedQuery: GameQuery) => {
+const useGames = () => {
+  const selectedQuery = useGameQueryStore((s) => s.gameQuery);
+
   return useInfiniteQuery<DataResponse<Game>, Error>({
     queryKey: ["games", selectedQuery],
     queryFn: ({ pageParam = 1 }) =>

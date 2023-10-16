@@ -4,9 +4,11 @@ import useFindGenreById from "../hooks/useFindGenreById";
 import useGameQueryStore from "../store";
 
 const GameHeading = () => {
-  const { gameQuery } = useGameQueryStore();
-  const genre = useFindGenreById(gameQuery.genreId);
-  const platform = useFindPlatformById(gameQuery.platformId);
+  const genreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
+
+  const genre = useFindGenreById(genreId);
+  const platform = useFindPlatformById(platformId);
 
   const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
   return (
