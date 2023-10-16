@@ -9,34 +9,7 @@ import { Platform } from "./hooks/usePlatforms";
 import GameSorter from "./components/GameSorter";
 import GameHeading from "./components/GameHeading";
 
-export interface GameQuery {
-  genreId?: number;
-  platformId?: number;
-  sortOrder: string;
-  searchTerm: string;
-}
-
 function App() {
-  const [selectedQuery, setSelectedQuery] = useState<GameQuery>(
-    {} as GameQuery
-  );
-
-  const handleGenreSelect = (genre: Genre) => {
-    setSelectedQuery({ ...selectedQuery, genreId: genre.id });
-  };
-
-  const handlePlatformSelected = (platform: Platform) => {
-    setSelectedQuery({ ...selectedQuery, platformId: platform.id });
-  };
-
-  const handleSortOrderSelected = (sortOrder: string) => {
-    setSelectedQuery({ ...selectedQuery, sortOrder });
-  };
-
-  const handleGameSearch = (searchTerm: string) => {
-    setSelectedQuery({ ...selectedQuery, searchTerm });
-  };
-
   return (
     <Grid
       templateAreas={{
@@ -49,32 +22,22 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar onSearch={handleGameSearch}></NavBar>
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <GenreList
-            onSelectGenre={handleGenreSelect}
-            selectedGenreId={selectedQuery.genreId}
-          ></GenreList>
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box paddingLeft={10}>
-          <GameHeading selectedQuery={selectedQuery} />
+          <GameHeading />
           <HStack>
-            <PlatformSelector
-              selectedPlatformId={selectedQuery.platformId}
-              onPlatformSelected={handlePlatformSelected}
-            ></PlatformSelector>
-            <GameSorter
-              selectedSortOrder={selectedQuery.sortOrder}
-              onSortOrderSelected={handleSortOrderSelected}
-            ></GameSorter>
+            <PlatformSelector />
+            <GameSorter />
           </HStack>
         </Box>
-
-        <GamesGrid selectedQuery={selectedQuery}></GamesGrid>
+        <GamesGrid />
       </GridItem>
     </Grid>
   );

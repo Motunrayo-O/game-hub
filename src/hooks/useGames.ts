@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
 import APIClient, { DataResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
 import ms from "ms";
+import { GameQuery } from "../store";
 
 const DEFAULT_PAGE_SIZE = 20;
 
