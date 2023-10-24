@@ -1,4 +1,4 @@
-import { Game } from "../hooks/useGames";
+import { Game } from "../entities/Game";
 import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import PlatformIconList from "./PlatformIconList";
@@ -23,7 +23,7 @@ const GameCard = ({ game }: Props) => {
         </HStack>
         <HStack>
           <Heading fontSize="2xl" mb={3}>
-            <Link to={'/games/' + game.slug}>{game.name}</Link>
+            <Link to={"/games/" + game.slug}>{game.name}</Link>
           </Heading>
           <Emoji rating={game.rating_top} />
         </HStack>
