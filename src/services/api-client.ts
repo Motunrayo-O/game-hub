@@ -13,7 +13,6 @@ const axiosInstance = axios.create({
   },
 });
 
-
 class APIClient<T> {
   endPoint: string;
 
@@ -24,6 +23,12 @@ class APIClient<T> {
   fetchData = (requestConfig: AxiosRequestConfig) => {
     return axiosInstance
       .get<DataResponse<T>>(this.endPoint, requestConfig)
+      .then((res) => res.data);
+  };
+
+  fetchDetail = (id: string | number) => {
+    return axiosInstance
+      .get<T>(`${this.endPoint}/${id}`)
       .then((res) => res.data);
   };
 }
